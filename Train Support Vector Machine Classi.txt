@@ -1,0 +1,52 @@
+Train Support Vector Machine Classifier (Spatial Analyst, ArcGIS Pro)
+Label	Explanation	Data Type
+Input Raster
+The raster dataset to classify.
+
+The preferred input is a 3-band, 8-bit segmented raster dataset in which all the pixels in the same segment have the same color. The input can also be a 1-band, 8-bit grayscale segmented raster. If no segmented raster is available, you can use any Esri-supported raster dataset.
+
+Raster Layer; Mosaic Layer; Image Service; String
+Input Training Sample File
+The training sample file or layer that delineates the training sites.
+
+These can be either shapefiles or feature classes that contain the training samples. The following field names are required in the training sample file:
+
+classname—A text field indicating the name of the class category
+classvalue—A long integer field containing the integer value for each class category
+Feature Layer
+Output Classifier Definition File
+The output JSON format file that will contain attribute information, statistics, hyperplane vectors, and other information for the classifier. An .ecd file will be created.
+
+File
+Additional Input Raster
+(Optional)
+Ancillary raster datasets, such as a multispectral image or a DEM, will be incorporated to generate attributes and other required information for classification. This parameter is optional.
+
+Raster Layer; Mosaic Layer; Image Service; String
+Maximum Number of Samples Per Class
+(Optional)
+The maximum number of samples that will be used to define each class.
+
+The default value of 500 is recommended when the inputs are nonsegmented rasters. A value that is less than or equal to 0 means that the system will use all the samples from the training sites to train the classifier.
+
+Long
+Segment Attributes Used
+(Optional)
+Specifies the attributes that will be included in the attribute table associated with the output raster.
+
+This parameter is only active if the Segmented key property is set to true on the input raster. If the only input to the tool is a segmented image, the default attributes are Converged color, Count of pixels, Compactness, and Rectangularity. If an Additional Input Raster value is included as an input with a segmented image, Mean digital number and Standard deviation are also available attributes.
+
+Converged color—The RGB color values will be derived from the input raster on a per-segment basis. This is also known as average chromaticity color.
+Mean digital number—The average digital number (DN) will be derived from the optional pixel image on a per-segment basis.
+Standard deviation—The standard deviation will be derived from the optional pixel image on a per-segment basis.
+Count of pixels—The number of pixels composing the segment, on a per-segment basis.
+Compactness—The degree to which a segment is compact or circular, on a per-segment basis. The values range from 0 to 1, in which 1 is a circle.
+Rectangularity—The degree to which the segment is rectangular, on a per-segment basis. The values range from 0 to 1, in which 1 is a rectangle.
+String
+Dimension Value Field
+(Optional)
+Contains dimension values in the input training sample feature class.
+
+This parameter is required to classify a time series of raster data using the change analysis raster output from the Analyze Changes Using CCDC tool in the Image Analyst toolbox.
+
+Field
